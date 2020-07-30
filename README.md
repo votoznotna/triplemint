@@ -21,9 +21,9 @@ Write some tests using Jest or similar, for testing html output using Enzyme or 
 ```
 git clone git@github.com:votoznotna/triplemint.git
 ```
-npm start
-```
 npm install
+```
+npm run test
 ```
 * From the same folder run
 ```
