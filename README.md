@@ -21,12 +21,18 @@ Write some tests using Jest or similar, for testing html output using Enzyme or 
 ```
 git clone git@github.com:votoznotna/triplemint.git
 ```
-npm install
 ```
-npm run test
+go triplemint directory
 ```
 * From the same folder run
 ```
+npm install
+```
+```
+npm run test
+``` 
+```
 npm start
 ``` 
+
 * Navigate http://localhost:3000/ in browser and enjoy the run.
