@@ -32,7 +32,7 @@ test('expect to select Bedrooms option successfully', async () => {
 
 })
 
-test('expect two tags upon clicking Clear button', async () => {
+test('expect no tags upon clicking Clear button', async () => {
 
   const {queryByText, queryAllByRole} = render(<App />)
 

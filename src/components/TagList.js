@@ -2,7 +2,6 @@ import React from 'react';
 
 const ulStyle = {
     padding: '0 10px',
-    // borderBottom: '1px solid grey',
     margin: '0',
     display: 'flex',
     flexWrap: 'wrap',

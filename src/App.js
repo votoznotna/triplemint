@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-// import Search from './components/Search';
 import Units from './components/Units';
 import TagList from './components/TagList';
 import Selector from './components/Selector';
