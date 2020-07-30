@@ -21,7 +21,7 @@ const selectorsStyle = {
   alignItems: 'center'
 }
 
-const constolsStyle = {
+const controlsStyle = {
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'start',
@@ -148,7 +148,7 @@ const App = () => {
                       multi={false}
                       ></Selector>
           </section>
-          <section id="controls" style={constolsStyle}>
+          <section id="controls" style={controlsStyle}>
             {!!tags.length && <button type="button" onClick={clearTags} style={clearButtonStyle} className="btn btn-light">Clear</button>}
           </section>
         </header>
