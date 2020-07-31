@@ -13,6 +13,8 @@ Write some tests using Jest or similar, for testing html output using Enzyme or 
 * Saving of tags/filters in browser's localStorage.
 * Unit tests of selectors/tags with jest testing-library. 
 
+## Runtime: https://antonzotov-triplemint.herokuapp.com/
+
 ## Getting Started
 
 * Have [Git] (https://git-scm.com/downloads) installed.
