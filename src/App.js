@@ -13,7 +13,9 @@ const headerStyle = {
   alignItems: 'center',
   padding: '0 0 10px 0'
 }
-
+const showHideOptionsStyle = {
+  cursor: 'pointer'
+}
 const selectorsStyle = {
   display: 'flex',
   flexWrap: 'wrap',
@@ -38,6 +40,7 @@ const logoStyle = {
 
 
 const logoLinkStyle = {
+  marginBottom: '5px',
   marginRight: '10px'
 }
 
@@ -53,6 +56,7 @@ const loadingStyle = {
 
 const mainStyle = {
   overflowY:'auto', 
+  height: '100%',
   overflowX:'hidden'
 }
 
@@ -71,6 +75,7 @@ const App = () => {
     const [{ data, isLoading, isError }, setParams] = useFetchReducer(initValues.params,
       initValues.data
     );
+    const [showHideOptions, setShowHideOptions] = useState(true);
 
     useEffect(() => {
       const query = tags.reduce((res, tag) => {
@@ -114,7 +119,7 @@ const App = () => {
       window.addEventListener('resize', handleResize);
       handleResize();
       return () => window.removeEventListener('resize', handleResize);
-    });
+    },[]);
 
     const clearTags = (e) => {
       e.preventDefault();
@@ -122,37 +127,41 @@ const App = () => {
     }
 
     return (
-      <div id="app" style={{overflow: 'hidden'}}>
-        <header style={headerStyle} className="mb-2">
-          <a style={logoLinkStyle} target="_blank" rel="noopener noreferrer" href={'https://www.triplemint.com/listings?listing_type=sale'}>
-            <img src={triplemint} style={logoStyle} alt="Logo"></img>
-          </a>
-          <section id="selectors" style={selectorsStyle}>
-            <Selector selectorId={'building_types'}  
-                      selectorTitle={'Property Type'} 
-                      selectorTags={[['co-op', 'Coop'], ['condo', 'Condo'], ['single-family', 'Single Family'], ['two family', 'Two Family'], ['condop', 'Condop'], ['multi-family', 'Multi-Family']]}
-                      tags={tags}
-                      setTags={setTags}
-                      ></Selector>   
-            <Selector selectorId={'bedrooms'}  
-                      selectorTitle={'Bedrooms'} 
-                      selectorTags={[['0', 'Studio'],['1', '1 Bed'], ['2', '2 Beds'], ['3', '3 Beds'], ['4', '4 Beds'], ['*5', '5+ Beds']]}
-                      tags={tags}
-                      setTags={setTags}
-                      ></Selector>   
-            <Selector selectorId={'min_bathrooms'}  
-                      selectorTitle={'Bathrooms'} 
-                      selectorTags={[['1', '1+ Bath'],['1.5', '1.5+ Baths'], ['2', '2+ Baths'], ['2.5', '2.5+ Baths'], ['3', '3+ Baths'], ['3.5', '3.5+ Baths'], ['4', '4+ Baths'], ['4.5', '4.5+ Baths']]}
-                      tags={tags}
-                      setTags={setTags}
-                      multi={false}
-                      ></Selector>
+      <div id="app" style={{overflow: 'auto'}}>
+        <header style={headerStyle} className="column-layout">
+          <section id="logo" style={logoLinkStyle} >
+            <div style={showHideOptionsStyle} 
+              onClick={() => setShowHideOptions(prev => !prev)}>
+              <img src={triplemint} style={logoStyle} alt="Logo"></img>
+            </div>
           </section>
-          <section id="controls" style={controlsStyle}>
-            {!!tags.length && <button type="button" onClick={clearTags} style={clearButtonStyle} className="btn btn-light">Clear</button>}
-          </section>
+          {showHideOptions &&
+            <section id="selectors" style={selectorsStyle}>
+              <Selector selectorId={'building_types'}  
+                        selectorTitle={'Property Type'} 
+                        selectorTags={[['co-op', 'Coop'], ['condo', 'Condo'], ['single-family', 'Single Family'], ['two family', 'Two Family'], ['condop', 'Condop'], ['multi-family', 'Multi-Family']]}
+                        tags={tags}
+                        setTags={setTags}
+                        ></Selector>   
+              <Selector selectorId={'bedrooms'}  
+                        selectorTitle={'Bedrooms'} 
+                        selectorTags={[['0', 'Studio'],['1', '1 Bed'], ['2', '2 Beds'], ['3', '3 Beds'], ['4', '4 Beds'], ['*5', '5+ Beds']]}
+                        tags={tags}
+                        setTags={setTags}
+                        ></Selector>   
+              <Selector selectorId={'min_bathrooms'}  
+                        selectorTitle={'Bathrooms'} 
+                        selectorTags={[['1', '1+ Bath'],['1.5', '1.5+ Baths'], ['2', '2+ Baths'], ['2.5', '2.5+ Baths'], ['3', '3+ Baths'], ['3.5', '3.5+ Baths'], ['4', '4+ Baths'], ['4.5', '4.5+ Baths']]}
+                        tags={tags}
+                        setTags={setTags}
+                        multi={false}
+                        ></Selector>
+            </section>}
+          {showHideOptions && <section id="controls" style={controlsStyle}>
+              {!!tags.length && <button type="button" onClick={clearTags} style={clearButtonStyle} className="btn btn-light">Clear</button>}
+            </section>}
         </header>
-        <TagList tags={tags} setTags={setTags}></TagList>
+        {showHideOptions && <TagList tags={tags} setTags={setTags}></TagList>}
         {isError && <div className='alert alert-danger'>Something went wrong ...</div>}
         <main ref={listRef} style={mainStyle}>
           <Units data={bizData}></Units>

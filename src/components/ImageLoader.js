@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 
-const ImageLoader = ({src, style, key}) => {
+const ImageLoader = ({src, style, id}) => {
     const [showStyle, setShowStyle] = useState({zIndex: -1});
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const ImageLoader = ({src, style, key}) => {
 
     return (
         <>
-            <img style={{...style, ...showStyle}} key={key} src={src} alt="Unit view"></img>
+            <img style={{...style, ...showStyle}} key={id} src={src} alt="Unit view"></img>
         </>
     );
 

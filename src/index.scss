@@ -72,3 +72,18 @@ img {
     opacity: 1;
   }
 }
+button {
+  outline: none;
+}
+@include media-breakpoint-down(sm) { 
+  .column-layout {
+    flex-direction: column;
+  }
+  section {
+    padding-bottom: 10px;
+  }
+  section:last-child {
+    padding-bottom:0;
+  }
+}
+

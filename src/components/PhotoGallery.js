@@ -127,7 +127,7 @@ const PhotoGallery = ({photos, uid}) => {
                         ( 
                         <div style={ photoIndex === index ? {...swiperSlideStyle, ...photoShow} :  {...swiperSlideStyle, ...photoHide} } key={`swiper_slide_${uid}_${index}`}>
                             <picture style={pictureStyle} key={`picture_${uid}_${index}`}>
-                                <ImageLoader style={imgStyle} key={`photo_${uid}_${index}`} src={`${IMG_BASE}/${photo.key}.${photo.extension}`}></ImageLoader>
+                                <ImageLoader style={imgStyle} id={`photo_${uid}_${index}`} src={`${IMG_BASE}/${photo.key}.${photo.extension}`}></ImageLoader>
                             </picture>
                         </div>
                         ) 
