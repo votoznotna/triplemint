@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import ImageLoader from './ImageLoader';
+
 const photoShow = {
     display: 'block'
 }
@@ -41,8 +43,6 @@ const cardSwiperContainerStyle = {
 }
 
 const swiperWrapperStyle = {
-    // transitionDuration: '0ms',
-    // transform: 'translate3d(-328px, 0px, 0px)',
     position: 'relative',
     height: '100%',
     width: '100%',
@@ -120,14 +120,14 @@ const PhotoGallery = ({photos, uid}) => {
 
     return (
         <>
-            <div style={thumbnailStyle}>
+            <div style={thumbnailStyle} onClick={() => selectUnit()}>
                 <div style={cardSwiperContainerStyle}>
                     <div style={swiperWrapperStyle}>
                     { photos.map((photo, index) => 
                         ( 
                         <div style={ photoIndex === index ? {...swiperSlideStyle, ...photoShow} :  {...swiperSlideStyle, ...photoHide} } key={`swiper_slide_${uid}_${index}`}>
                             <picture style={pictureStyle} key={`picture_${uid}_${index}`}>
-                                <img style={imgStyle} onClick={() => selectUnit()} key={`photo_${uid}_${index}`}  src={`${IMG_BASE}/${photo.key}.${photo.extension}`} alt="Unit view"></img>
+                                <ImageLoader style={imgStyle} key={`photo_${uid}_${index}`} src={`${IMG_BASE}/${photo.key}.${photo.extension}`}></ImageLoader>
                             </picture>
                         </div>
                         ) 
