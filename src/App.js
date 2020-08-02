@@ -38,7 +38,6 @@ const logoStyle = {
   width: '140px'
 }
 
-
 const logoLinkStyle = {
   marginBottom: '5px',
   marginRight: '10px'
@@ -55,7 +54,7 @@ const loadingStyle = {
 }
 
 const mainStyle = {
-  overflowY:'auto', 
+  overflowY:'auto',
   height: '100%',
   overflowX:'hidden'
 }
@@ -114,7 +113,7 @@ const App = () => {
         const scrollElement = listRef.current;
         const header = document.querySelector('header');
         const tagListComponent = document.querySelector('#tag-list-component');
-        scrollElement.style.height = `${window.innerHeight - header.clientHeight - tagListComponent.clientHeight - 50}px` ;
+        scrollElement.style.height = `${window.innerHeight - header.clientHeight - (tagListComponent ? tagListComponent.clientHeight : 0) - 50}px` ;
       }
       window.addEventListener('resize', handleResize);
       handleResize();
